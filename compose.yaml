@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mensetsu
+  test-db:
+    image: postgres:latest
+    ports:
+      - 54321:5432
+    volumes:
+      - test-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mensetsu
+volumes:
+  db-data:
+  test-db-data:
