@@ -3,49 +3,34 @@
 namespace App\Domain;
 
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Str;
 
 class Interview
 {
     private string $interviewId;
 
-    private string $screeningId;
-
-    private CarbonImmutable $screeningDate;
+    private CarbonImmutable $interviewDate;
 
     private int $interviewNumber;
 
     private ScreeningStepResult $screeningStepResult;
 
-    private int $recruiterId;
+    public function __construct(CarbonImmutable $interviewDate, int $interviewNumber)
+    {
+        $this->interviewDate = $interviewDate;
+        $this->interviewNumber = $interviewNumber;
+        $this->interviewId = Str::uuid();
+        $this->screeningStepResult = ScreeningStepResult::NotEvaluated;
+    }
 
     public function getInterviewId(): string
     {
         return $this->interviewId;
     }
 
-    public function setInterviewId(string $interviewId): void
+    public function getInterviewDate(): CarbonImmutable
     {
-        $this->interviewId = $interviewId;
-    }
-
-    public function getScreeningId(): string
-    {
-        return $this->screeningId;
-    }
-
-    public function setScreeningId(string $screeningId): void
-    {
-        $this->screeningId = $screeningId;
-    }
-
-    public function getScreeningDate(): CarbonImmutable
-    {
-        return $this->screeningDate;
-    }
-
-    public function setScreeningDate(CarbonImmutable $screeningDate): void
-    {
-        $this->screeningDate = $screeningDate;
+        return $this->interviewDate;
     }
 
     public function getInterviewNumber(): int
@@ -53,28 +38,8 @@ class Interview
         return $this->interviewNumber;
     }
 
-    public function setInterviewNumber(int $interviewNumber): void
-    {
-        $this->interviewNumber = $interviewNumber;
-    }
-
     public function getScreeningStepResult(): ScreeningStepResult
     {
         return $this->screeningStepResult;
-    }
-
-    public function setScreeningStepResult(ScreeningStepResult $screeningStepResult): void
-    {
-        $this->screeningStepResult = $screeningStepResult;
-    }
-
-    public function getRecruiterId(): int
-    {
-        return $this->recruiterId;
-    }
-
-    public function setRecruiterId(int $recruiterId): void
-    {
-        $this->recruiterId = $recruiterId;
     }
 }
