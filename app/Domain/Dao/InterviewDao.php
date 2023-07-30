@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 class InterviewDao
 {
     /**
-     * @return Collection<Interview>
+     * @return Collection<int, Interview>
      */
     public function findByScreeningId(string $screeningId): Collection
     {
